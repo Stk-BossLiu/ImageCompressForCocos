@@ -22,7 +22,7 @@ class CompressImage {
 
 	async compressImageFromFolder(folderPath: string) {
 		folderPath = path.resolve(folderPath, "*.{jpg,png}").replace(/\\/g, "/");
-		const inputPaths = await globby(folderPath);
+		const inputPaths = await globby(folderPath, { onlyFiles: true });
 		if (inputPaths.length == 0) {
 			Editor.Dialog.warn("文件夹没有jpg/png。");
 			return;
