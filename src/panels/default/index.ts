@@ -1,7 +1,7 @@
-import { readFileSync } from "fs-extra";
+import { readFileSync } from "fs";
 import { join } from "path";
-import { methods } from "../../main";
 import { compressImage } from "../../compress";
+import { imageConfigModify, ImageConfigModify } from "../../imageConfigModify";
 /**
  * @zh 如果希望兼容 3.3 之前的版本可以使用下方的代码
  * @en You can add the code below if you want compatibility with versions prior to 3.3
@@ -16,10 +16,8 @@ var imageUUIDList: string[] = [];
 var folderPath: string = "";
 var minQuality: number = 0.6;
 var maxQuality: number = 0.8;
-const imageBlockElementText = `<div id="image-block">
-	${editorElementDict.ui_asset}
-	${editorElementDict.ui_del_button}
-</div>`;
+var fixAlpha: boolean = true;
+
 module.exports = Editor.Panel.define({
 	listeners: {
 		show() {
@@ -46,6 +44,7 @@ module.exports = Editor.Panel.define({
 		folderPlaceholder: "#folder",
 		minQualitySlider: "#image-quality-min-slider",
 		maxQualitySlider: "#image-quality-max-slider",
+		fixAlphaCheckbox: "#fix-alpha-transparency-artifact-checkbox",
 	},
 
 	methods: {
@@ -96,12 +95,20 @@ module.exports = Editor.Panel.define({
 					maxQuality = event.target.value;
 				});
 			}
+			if (this.$.fixAlphaCheckbox) {
+				const checkBox = this.$.fixAlphaCheckbox!;
+				checkBox.addEventListener("confirm", (event: any) => {
+					imageConfigModify.fixAlphaTransparency(event.target.value);
+				});
+			}
 		},
 
 		addImageBlock() {
 			const imageBlockElement = document.createElement("div");
+			imageBlockElement.id = "image-block";
 			this.$.imageList?.appendChild(imageBlockElement);
-			imageBlockElement.innerHTML = imageBlockElementText;
+			imageBlockElement.innerHTML = `	${editorElementDict.ui_asset}
+	${editorElementDict.ui_del_button}`;
 			imageBlockList.push(imageBlockElement);
 			const delButton = imageBlockElement.querySelector("ui-button")!;
 			delButton.addEventListener("click", () => {

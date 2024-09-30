@@ -21,3 +21,5 @@ export function load() {}
  * @zh 扩展卸载完成后触发的钩子
  */
 export function unload() {}
+
+export const ProjectPath = Editor.Project.path;

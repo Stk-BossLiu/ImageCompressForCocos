@@ -2,16 +2,19 @@
   <h1 id="app">
     <div id="section-image">
       <ui-section id="section-image-import" class="config" header="i18n:image_compress.image_compress_window.section.import_images" expand>
-        <div id="image-list"></div>
-        <div id="image-button">
-          <ui-button id="btn-add-image"></ui-button>
-          <ui-button id="btn-image-submit"></ui-button>
+        <div id="image-import-container">
+          <div id="image-list"></div>
+          <div id="image-button">
+            <ui-button id="btn-add-image"></ui-button>
+            <ui-button id="btn-image-submit"></ui-button>
+          </div>
         </div>
+
       </ui-section>
     </div>
     <div id="section-folder">
       <ui-section id="section-folder-import" class="config" header="i18n:image_compress.image_compress_window.section.import_folder" expand>
-        <div id="folder">
+        <div id="folder-container">
           <ui-file id="folder" protocols="project" type="directory"></ui-file>
           </ui-file>
         </div>
@@ -29,6 +32,13 @@
             </div>
             <ui-slider id="image-quality-max-slider" step="0.1" value="0.8" min="0.0" max="1"></ui-slider>
           </span>
+        </div>
+      </ui-section>
+      <ui-section id="image-config" class="config" header="i18n:image_compress.image_compress_window.section.ImagesConfig" expand>
+        <div id="fix-alpha-transparency-artifact-container">
+          <span>Fix Alpha Transparency Artifact
+          </span>
+          <ui-checkbox id="fix-alpha-transparency-artifact-checkbox" checked></ui-checkbox>
         </div>
       </ui-section>
     </div>

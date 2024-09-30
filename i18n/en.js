@@ -7,6 +7,7 @@ module.exports = {
 		section: {
 			import_images: "Import images",
 			import_folder: "Import folder",
+			ImagesConfig: "Modify all image configurations",
 		},
 	},
 	add_image: "Add image",

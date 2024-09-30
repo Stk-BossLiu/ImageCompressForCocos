@@ -7,6 +7,7 @@ module.exports = {
 		section: {
 			import_images: "导入图片",
 			import_folder: "导入文件夹",
+			ImagesConfig: "修改项目内所有图片配置",
 		},
 		add_image: "添加图片",
 		add_folder: "添加文件夹",

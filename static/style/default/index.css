@@ -17,3 +17,73 @@
 	align-content: center;
 	font-size: small;
 }
+
+.config {
+	margin-top: 10px;
+	font-size: small;
+	align-items: center;
+}
+
+#folder-container {
+	margin-top: 10px;
+}
+
+#folder {
+	width: 100%;
+	align-items: center;
+}
+
+#image-import-container {
+	margin-top: 5px;
+}
+
+#btn-folder-submit {
+	align-items: center;
+}
+
+#fix-alpha-transparency-artifact-container {
+	width: 100%;
+	display: flex;
+	margin-top: 5px;
+	gap: 16px;
+	justify-content: center;
+}
+
+#btn-folder-submit {
+	flex-grow: 1;
+	height: 50px;
+	align-content: inherit;
+	font-size: small;
+	text-align: center;
+	line-height: 26px;
+	flex-direction: row;
+}
+
+#image-button {
+	flex-grow: 1;
+	align-content: center;
+	font-size: small;
+	text-align: center;
+	line-height: 26px;
+	flex-direction: row;
+}
+
+#image-list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	justify-content: center;
+}
+
+#image-block {
+	margin-bottom: 5px;
+}
+
+#image-block ui-asset {
+	width: 85%;
+}
+
+#fix-alpha-transparency-artifact-container span {
+	font-size: small;
+}

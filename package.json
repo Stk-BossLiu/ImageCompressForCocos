@@ -5,6 +5,7 @@
 	"description": "i18n:image_compress.description",
 	"main": "./dist/main.js",
 	"dependencies": {
+		"file-type": "^16.5.4",
 		"fs": "^0.0.1-security",
 		"fs-extra": "^10.0.0",
 		"imagemin": "^7.0.1",
