@@ -14,6 +14,8 @@ const editorElementDict = {
 var imageBlockList: Node[] = [];
 var imageUUIDList: string[] = [];
 var folderPath: string = "";
+var minQuality: number = 0.6;
+var maxQuality: number = 0.8;
 const imageBlockElementText = `<div id="image-block">
 	${editorElementDict.ui_asset}
 	${editorElementDict.ui_del_button}
@@ -42,6 +44,8 @@ module.exports = Editor.Panel.define({
 		imageSubmitBtn: "#btn-image-submit",
 		folderSubmitBtn: "#btn-folder-submit",
 		folderPlaceholder: "#folder",
+		minQualitySlider: "#image-quality-min-slider",
+		maxQualitySlider: "#image-quality-max-slider",
 	},
 
 	methods: {
@@ -64,7 +68,7 @@ module.exports = Editor.Panel.define({
 					this.onSubmitImage.bind(this)
 				);
 			}
-			console.log(this.$.folderSubmitBtn);
+
 			if (this.$.folderSubmitBtn) {
 				this.$.folderSubmitBtn.innerText = Editor.I18n.t(
 					"image_compress.image_compress_window.submit"
@@ -78,6 +82,18 @@ module.exports = Editor.Panel.define({
 				this.$.folderPlaceholder.addEventListener("confirm", event => {
 					//@ts-ignore
 					folderPath = event.target.value;
+				});
+			}
+			if (this.$.minQualitySlider) {
+				this.$.minQualitySlider.addEventListener("confirm", event => {
+					//@ts-ignore
+					minQuality = event.target.value;
+				});
+			}
+			if (this.$.maxQualitySlider) {
+				this.$.maxQualitySlider.addEventListener("confirm", event => {
+					//@ts-ignore
+					maxQuality = event.target.value;
 				});
 			}
 		},
@@ -113,8 +129,18 @@ module.exports = Editor.Panel.define({
 		},
 
 		onSubmitFolder() {
+			let min = 0.6,
+				max = 0.8;
+
+			if (minQuality > maxQuality) {
+				min = maxQuality;
+				max = minQuality;
+			} else {
+				min = minQuality;
+				max = maxQuality;
+			}
 			if (folderPath.length > 0) {
-				compressImage.compressImageFromFolder(folderPath);
+				compressImage.compressImageFromFolder(folderPath, min, max);
 			} else {
 				console.log("No Folder Selected");
 				Editor.Dialog.warn("文件夹路径为空。");

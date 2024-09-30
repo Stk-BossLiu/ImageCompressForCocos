@@ -20,7 +20,14 @@ class CompressImage {
 		});
 	}
 
-	async compressImageFromFolder(folderPath: string) {
+	async compressImageFromFolder(
+		folderPath: string,
+		minQuality: number = 0.6,
+		maxQuality: number = 0.8
+	) {
+		console.log(
+			`开始压缩，设定最小压缩质量为${minQuality}，最大压缩质量为${maxQuality}.`
+		);
 		folderPath = path.resolve(folderPath, "*.{jpg,png}").replace(/\\/g, "/");
 		const inputPaths = await globby(folderPath, { onlyFiles: true });
 		if (inputPaths.length == 0) {
@@ -32,13 +39,18 @@ class CompressImage {
 			plugins: [
 				imageminJpegtran(),
 				imageminPngquant({
-					quality: [0.6, 0.8],
+					quality: [minQuality, maxQuality],
 				}),
 			],
 		}).then(files => {
 			files.forEach(async file => {
-				fs.writeFile(file.sourcePath, file.data, () => {
-					console.log(file.sourcePath + " 压缩完成");
+				fs.writeFile(file.sourcePath, file.data, err => {
+					if (err) {
+						console.error(file.sourcePath + "压缩失败");
+						console.error("[ERR]:" + err);
+					} else {
+						console.log(file.sourcePath + " 压缩完成", "color: green");
+					}
 				});
 			});
 		});

@@ -3,3 +3,17 @@
 	margin: auto;
 	width: 360px;
 }
+
+#folder-config-container {
+	width: 100%;
+	display: flex;
+	margin-top: 20px;
+	gap: 16px;
+	justify-content: center;
+}
+#btn-folder-submit {
+	flex-grow: 1;
+	height: 50px;
+	align-content: center;
+	font-size: small;
+}
