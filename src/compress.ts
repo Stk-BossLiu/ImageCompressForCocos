@@ -29,6 +29,7 @@ class CompressImage {
 			`开始压缩，设定最小压缩质量为${minQuality}，最大压缩质量为${maxQuality}.`
 		);
 		folderPath = path.resolve(folderPath, "*.{jpg,png}").replace(/\\/g, "/");
+		console.log(folderPath);
 		const inputPaths = await globby(folderPath, { onlyFiles: true });
 		if (inputPaths.length == 0) {
 			Editor.Dialog.warn("文件夹没有jpg/png。");
@@ -49,7 +50,7 @@ class CompressImage {
 						console.error(file.sourcePath + "压缩失败");
 						console.error("[ERR]:" + err);
 					} else {
-						console.log(file.sourcePath + " 压缩完成", "color: green");
+						console.log("%c" + file.sourcePath + " 压缩完成", "color: green");
 					}
 				});
 			});

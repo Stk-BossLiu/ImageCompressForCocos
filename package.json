@@ -36,25 +36,15 @@
 	"contributions": {
 		"menu": [
 			{
-				"path": "i18n:menu.panel/image_compress",
-				"label": "i18n:image_compress.open_panel",
+				"path": "i18n:menu.extension",
+				"label": "image compress",
 				"message": "open-panel"
-			},
-			{
-				"path": "i18n:menu.develop/image_compress",
-				"label": "i18n:image_compress.send_to_panel",
-				"message": "send-to-panel"
 			}
 		],
 		"messages": {
 			"open-panel": {
 				"methods": [
 					"openPanel"
-				]
-			},
-			"send-to-panel": {
-				"methods": [
-					"default.hello"
 				]
 			}
 		}
